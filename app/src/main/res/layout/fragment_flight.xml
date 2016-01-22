@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.sakharuk.flightanimation.view.FrameLayoutTouchInterceptor
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.sakharuk.flightanimation.view.FlightView
+            android:id="@+id/flight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.sakharuk.flightanimation.view.PlaneView
+            android:id="@+id/airplane"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_airline"/>
+    </com.sakharuk.flightanimation.view.FrameLayoutTouchInterceptor>
+
+</layout>
