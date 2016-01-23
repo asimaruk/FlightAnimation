@@ -1,12 +1,9 @@
 package com.sakharuk.flightanimation;
 
-import android.animation.ValueAnimator;
 import android.app.Fragment;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.graphics.Path;
 import android.graphics.Point;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -16,26 +13,16 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.sakharuk.flightanimation.databinding.FragmentFlightBinding;
 import com.sakharuk.flightanimation.view.FrameLayoutTouchInterceptor;
 
-import org.apache.commons.math3.analysis.UnivariateFunction;
-import org.apache.commons.math3.analysis.interpolation.SplineInterpolator;
-import org.apache.commons.math3.analysis.interpolation.UnivariateInterpolator;
-
-import java.util.ArrayList;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -125,8 +112,11 @@ public class FlightFragment extends Fragment implements OnMapReadyCallback {
                         public void run() {
                             Point point = googleMap.getProjection().toScreenLocation(new LatLng(x, FlightTools.getPathValue(x)));
                             Log.d("Plane", point.toString());
+                            Log.d("Plane differential", String.valueOf(FlightTools.getDifferential(x)));
+                            Log.d("Plane angle", String.valueOf(Math.atan(FlightTools.getDifferential(x))));
                             binding.airplane.setTranslationX(point.x - binding.airplane.getWidth() / 2);
                             binding.airplane.setTranslationY(point.y - binding.airplane.getHeight() / 2);
+                            binding.airplane.setRotation(FlightTools.getPlaneRotationAndle(x));
                         }
                     });
                 }
